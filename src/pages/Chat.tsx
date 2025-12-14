@@ -4,19 +4,18 @@ import { useRef } from 'react';
 
 function Chat() {
 	const [message, setMessage] = useState<string>('');
-	const [loading, setLoading] = useState<boolean>(false);
-	const [error, setError] = useState<string | null>(null);
-	const getClientId = () => {
-		let clientId = sessionStorage.getItem('sse-client-id');
-	if (!clientId) {
-      // crypto.randomUUID()가 지원되지 않는 환경을 위한 fallback
-      clientId =
-        crypto?.randomUUID?.() ||
-        Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
-      sessionStorage.setItem('sse-client-id', clientId);
-    }
-    return clientId;
-  };
+	const [error, _] = useState<string | null>(null);
+	// const getClientId = () => {
+	// 	let clientId = sessionStorage.getItem('sse-client-id');
+	// if (!clientId) {
+  //     // crypto.randomUUID()가 지원되지 않는 환경을 위한 fallback
+  //     clientId =
+  //       crypto?.randomUUID?.() ||
+  //       Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+  //     sessionStorage.setItem('sse-client-id', clientId);
+  //   }
+  //   return clientId;
+  // };
  
   // const handleHelloClick = async () => {
   //   setLoading(true);
@@ -66,7 +65,7 @@ function Chat() {
       heartbeatTimeoutRef.current = null;
     }
  
-    const clientId = getClientId();
+    // const clientId = getClientId();
     // const sseUrl = `${import.meta.env.VITE_API_BASE_URL}/sse/events?clientId=${clientId}`;
     const sseUrl = `${import.meta.env.VITE_API_BASE_URL}/sse`;
  
